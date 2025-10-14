@@ -1,0 +1,19 @@
+API 키와 같은 민감한 정보 파일
+이 파일은 절대로 GitHub에 올리면 안 됩니다!
+.env
+
+Python 캐시 파일 및 폴더
+pycache/
+*.pyc
+*.pyo
+*.pyd
+
+SQLite 데이터베이스 파일
+데이터는 로컬에서 관리하고, GitHub에는 스키마(models.py)만 올립니다.
+*.db
+*.sqlite
+*.sqlite3
+
+IDE 및 에디터 설정 파일
+.vscode/
+.idea/
