@@ -4,7 +4,7 @@ import pandas as pd
 from datetime import datetime
 
 # 백엔드 API 주소
-BACKEND_URL = "http://127.0.0.1:8000"
+BACKEND_URL = "https://oracle-ai-manager.onrender.com"
 
 st.set_page_config(page_title="Oracle AI Manager", layout="wide")
 
