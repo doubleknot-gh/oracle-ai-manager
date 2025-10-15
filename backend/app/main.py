@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 # .env 파일로부터 환경 변수 로드
 # backend/ 폴더에 있는 .env 파일을 명시적으로 지정합니다.
@@ -15,6 +16,27 @@ from .database import SessionLocal, engine
 
 # DB 테이블 생성
 models.Base.metadata.create_all(bind=engine)
+
+# ⭐️⭐️ Streamlit Cloud CORS 허용 목록 ⭐️⭐️
+# 이 목록에 Streamlit 앱의 실제 도메인을 포함해야 합니다.
+origins = [
+    "http://localhost:8501", # 로컬 테스트용
+    "https://oracle-ai-manager.onrender.com", # 자기 자신 (필요할 수 있음)
+    # 💡 Streamlit Cloud 앱의 최종 URL을 여기에 추가하세요!
+    # 예시: "https://[랜덤 아이디].streamlit.app",
+    # 개발 초기에는 일단 모든 출처를 허용해 볼 수 있습니다 (보안상 권장되지 않음)
+    "*"
+]
+
+app = FastAPI(title="Oracle AI Manager & Coach API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"], # 모든 HTTP 메서드 허용 (GET, POST 등)
+    allow_headers=["*"], # 모든 헤더 허용
+)
 
 app = FastAPI(title="Oracle AI Manager & Coach API")
 
